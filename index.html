@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+    crossorigin="anonymous">
+  <style>
+    .page-link:focus,a:active {
+      outline: none !important;
+      box-shadow: none;
+    }
+    table{
+      width : 100%;
+    }
+  </style>
+  <title>Pagination</title>
+</head>
+
+<body>
+  <div class="container"><br>
+    <h1 id="title">Pagination</h1>
+    <p id="description"> DOM pagination task with HTML and CSS</p>
+    <div class="  table-responsive pl-5 my-5 text-start ">
+      <table class="table table-bordered" id="table">
+        <thead class="bg-primary text-light">
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="container mt-5 d-flex justify-content-center" id="buttons">
+    <nav aria-label="...">
+      <ul class="pagination justify-content-center " id="ulTag">
+        <!-- <li class="page-item"><a class="page-link" href="#">1</a></li> -->
+      </ul>
+    </nav>
+  </div><br><br><br>
+
+
+  <script src="https://app.zenclass.in/sheets/v1/js/zen/suite/bundle.js"></script>
+  <script src="./script.js"></script>
+</body>
+
+</html>
