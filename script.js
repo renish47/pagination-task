@@ -521,7 +521,7 @@ function createPg() {
   var aTag = document.createElement('a');
   aTag.innerHTML = 'First';
   aTag.classList.add('page-link');
-  aTag.setAttribute('href', '#');
+  aTag.setAttribute('href', 1);
   aTag.setAttribute('id', 'first');
   aTag.setAttribute('onCLick', 'pageNoclicked(event)');
   li.append(aTag);
@@ -553,7 +553,7 @@ function createPg() {
     aTag.innerText = i;
     aTag.classList.add('page-link');
     aTag.setAttribute('id', i);
-    aTag.setAttribute('href', '#');
+    aTag.setAttribute('href', i);
     aTag.setAttribute('onCLick', 'pageNoclicked(event)');
     li.append(aTag);
     ul.append(li);
@@ -581,7 +581,7 @@ function createPg() {
   var aTag = document.createElement('a');
   aTag.innerHTML = 'Last';
   aTag.classList.add('page-link');
-  aTag.setAttribute('href', '#');
+  aTag.setAttribute('href', Math.ceil(noOfData/row));
   aTag.setAttribute('id', 'last');
   aTag.setAttribute('onCLick', 'pageNoclicked(event)');
   li.append(aTag);
