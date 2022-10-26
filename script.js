@@ -515,7 +515,7 @@ function createPg() {
 
   //first
   var li = document.createElement("li");
-  li.classList.add('page-item');
+  li.classList.add('page-item','disabled');
   li.setAttribute('id', 'first-li');
 
   var aTag = document.createElement('a');
@@ -523,13 +523,13 @@ function createPg() {
   aTag.classList.add('page-link');
   aTag.setAttribute('href', '#');
   aTag.setAttribute('id', 'first');
-  aTag.setAttribute('onCLick', 'pageNoclicked(event)');
+  aTag.setAttribute('onclick', 'pageNoclicked(event)');
   li.append(aTag);
   ul.append(li);
 
   //previous
   var li = document.createElement("li");
-  li.classList.add('page-item');
+  li.classList.add('page-item','disabled');
   li.setAttribute('id', 'previous-li');
 
   var aTag = document.createElement('a');
@@ -537,7 +537,7 @@ function createPg() {
   aTag.classList.add('page-link');
   aTag.setAttribute('href', '#');
   aTag.setAttribute('id', 'previous');
-  aTag.setAttribute('onCLick', 'pageNoclicked(event)');
+  aTag.setAttribute('onclick', 'pageNoclicked(event)');
   li.append(aTag);
   ul.append(li);
 
@@ -554,7 +554,7 @@ function createPg() {
     aTag.classList.add('page-link');
     aTag.setAttribute('id', i);
     aTag.setAttribute('href','#');
-    aTag.setAttribute('onCLick', 'pageNoclicked(event)');
+    aTag.setAttribute('onclick', 'pageNoclicked(event)');
     li.append(aTag);
     ul.append(li);
   }
@@ -569,7 +569,7 @@ function createPg() {
   aTag.classList.add('page-link');
   aTag.setAttribute('href', '#');
   aTag.setAttribute('id', 'next');
-  aTag.setAttribute('onCLick', 'pageNoclicked(event)');
+  aTag.setAttribute('onclick', 'pageNoclicked(event)');
   li.append(aTag);
   ul.append(li);
   createTable(1);
@@ -583,7 +583,7 @@ function createPg() {
   aTag.classList.add('page-link');
   aTag.setAttribute('href', '#');
   aTag.setAttribute('id', 'last');
-  aTag.setAttribute('onCLick', 'pageNoclicked(event)');
+  aTag.setAttribute('onclick', 'pageNoclicked(event)');
   li.append(aTag);
   ul.append(li);
   createTable(1);
@@ -616,7 +616,27 @@ let previousPageId ="1-li";
 let previousPageNo =1;
 function pageNoclicked(event) 
 {
+  // console.log(event);
 
+  // disabling-enabling prev,first,next,last btns
+  if(event.target.id=='1' || event.target.id=='first' ){
+    document.getElementById('previous-li').classList.add('disabled')
+    document.getElementById('first-li').classList.add('disabled')
+  }
+  else{
+    document.getElementById('previous-li').classList.remove('disabled')
+    document.getElementById('first-li').classList.remove('disabled')
+  }
+  if(event.target.id==Math.ceil(noOfData/row) || event.target.id=='last'){
+    document.getElementById('last-li').classList.add('disabled')
+    document.getElementById('next-li').classList.add('disabled')
+  }
+  else{
+    document.getElementById('last-li').classList.remove('disabled')
+    document.getElementById('next-li').classList.remove('disabled')
+  }
+
+  // funtion of prev button
   if(event.target.id=='previous')
   {
     if(parseInt(previousPageNo)-1<1)
@@ -629,7 +649,7 @@ function pageNoclicked(event)
     changeActiveClr(event)
   }
 
-
+  // function of next button
   else if(event.target.id=='next')
   {
     if((parseInt(previousPageNo)+1)>Math.ceil(noOfData/row))
@@ -641,6 +661,7 @@ function pageNoclicked(event)
     }
     changeActiveClr(event)
   }
+  // function of first and last buttons
   else if(event.target.id=='first'){
     previousPageNo = 1;
     createTable(1);
@@ -653,6 +674,7 @@ function pageNoclicked(event)
     changeActiveClr(event)
 
   }
+  // function of other page buttons
   else
   {
     previousPageNo = event.target.innerText;
@@ -674,7 +696,25 @@ function changeActiveClr(event)
       var idTemp = event.target.parentElement.id
       let id = (previousPageNo) + idTemp.slice(idTemp.indexOf('-'));
       document.getElementById(id).classList.add('active');
+
+      // disabling-enabling prev,next btns
+      if(id=='1-li'){
+        document.getElementById('previous-li').classList.add('disabled')
+        document.getElementById('first-li').classList.add('disabled')
+      }
+      else{
+        document.getElementById('previous-li').classList.remove('disabled')
+        document.getElementById('first-li').classList.remove('disabled')
+      }
+      if(id==Math.ceil(noOfData/row)+'-li'){
+        document.getElementById('last-li').classList.add('disabled')
+        document.getElementById('next-li').classList.add('disabled')
+      }
+      else{
+        document.getElementById('last-li').classList.remove('disabled')
+        document.getElementById('next-li').classList.remove('disabled')}
       
+      // removing active clr from previously active button
       let idToRemove1 = (previousPageNo-1) + idTemp.slice(idTemp.indexOf('-'));
       let idToRemove2 = (previousPageNo+1) + idTemp.slice(idTemp.indexOf('-'));
       if(event.target.parentElement.id=='previous-li')
